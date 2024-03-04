@@ -1,0 +1,45 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.app__headline {
+  color: pink;
+}
+
+.header {
+  font-size: 2rem;
+}
+
+.footer {
+  background-color: pink;
+  padding: 20px;
+}
+
+.app__headline {
+  font-size: 2rem;
+}
+
+
+.nav-bar a:hover {
+  color: #555;
+}
+
+.burger-menu div {
+  height: 20px;
+  width: 100px;
+  margin:5px;
+  background-color: black;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+  margin-right: 10px;
+}
+
+.link--highlighted {
+  font-weight: bold;
+}
