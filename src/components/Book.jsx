@@ -5,7 +5,7 @@ import Context from "./Context";
 const Book = ({ id, title, authors, img, price }) => {
   const [isInCart, setIsInCart] = useState(false);
   const {
-    state: { totalPrice, shoppingCart },
+    state: { totalPrice, shoppingCart, currency, exchangeRate },
     dispatch,
   } = useContext(Context);
   const addToCart = (title, price) => {
@@ -33,7 +33,7 @@ const Book = ({ id, title, authors, img, price }) => {
       <br />
       Author:
       {authors.join(", ")} <br />
-      Price: {price} <br />
+      Price: {price * exchangeRate + currency} <br />
       {!isInCart ? (
         <button
           onClick={() => {

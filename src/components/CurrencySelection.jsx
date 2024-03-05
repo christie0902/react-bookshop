@@ -8,9 +8,9 @@ const CurrencySelection = () => {
   //   localStorage.getItem("currency") || "eur"
   // );
   const [currencies, setCurrencies] = useState([]);
-  const [exchangeRate, setExchangeRate] = useState(1);
+  // const [exchangeRate, setExchangeRate] = useState(1);
   const {
-    state: { currency },
+    state: { currency, exchangeRate },
     dispatch,
   } = useContext(Context);
   // const { currency, setCurrency } = useContext(CurrencyContext);
@@ -28,7 +28,11 @@ const CurrencySelection = () => {
       `https://classes.codingbootcamp.cz/assets/classes/books-api/exchange-rate.php?currency=${currency}`
     );
     const data = await response.json();
-    setExchangeRate(data.rate);
+    const rate = data.rate;
+    dispatch({
+      type: "exchangeRate/set",
+      payload: data.rate,
+    });
   };
 
   const loadCurrencies = async () => {

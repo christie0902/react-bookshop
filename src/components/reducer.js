@@ -51,6 +51,12 @@ export default function reducer(state, action) {
         ),
         totalPrice: state.totalPrice - action.payload.price,
       };
+
+    case "exchangeRate/set":
+      return {
+        ...state,
+        exchangeRate: action.payload,
+      };
   }
 
   // the action was not recognized, return the state unchanged

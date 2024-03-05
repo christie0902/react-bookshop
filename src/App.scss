@@ -9,6 +9,7 @@
   color: pink;
 }
 
+
 .header {
   font-size: 2rem;
 }
@@ -42,4 +43,24 @@
 
 .link--highlighted {
   font-weight: bold;
+}
+
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.book-item {
+  width: calc(33.33% - 10px); /* Adjust as needed */
+  margin-bottom: 20px;
+}
+
+.pagination {
+  width: 300px;
+  margin-inline: auto;
+}
+
+button {
+ color: rgb(208, 45, 72);
 }

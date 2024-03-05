@@ -16,7 +16,7 @@ import reducer from "./components/reducer";
 function App() {
   const [count, setCount] = useState(0);
   const [currency, setCurrency] = useState("EUR");
-  const [currentPage, setCurrentPage] = useState("");
+  const [currentPage, setCurrentPage] = useState("#");
   const [user, setUser] = useState("");
   const [state, dispatch] = useReducer(reducer, {
     page: "",
@@ -27,6 +27,7 @@ function App() {
     authHash: null,
     shoppingCart: [],
     totalPrice: 0,
+    exchangeRate: 1,
   });
   console.log(state.shoppingCart);
   return (

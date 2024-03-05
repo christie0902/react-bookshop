@@ -27,27 +27,31 @@ const BookList = ({ booksInCart, setBooksInCart }) => {
   return (
     <ul style={{ textAlign: "left" }}>
       <h4>You can buy these book in {currency}</h4>
-      {bookList.map((book) => (
-        <li key={book.id}>
-          <Book
-            title={book.title}
-            authors={book.authors.map((author) => author.name)}
-            img={book.image}
-            price={book.price}
-            booksInCart={booksInCart}
-            setBooksInCart={setBooksInCart}
-          />
-        </li>
-      ))}
-      <button
-        onClick={() => {
-          page > 1 && setPage(page - 1);
-        }}
-      >
-        Previous
-      </button>
-      {page}
-      <button onClick={() => setPage(page + 1)}>Next</button>
+      <div className="book-list">
+        {bookList.map((book) => (
+          <li className="book-item" key={book.id}>
+            <Book
+              title={book.title}
+              authors={book.authors.map((author) => author.name)}
+              img={book.image}
+              price={book.price}
+              booksInCart={booksInCart}
+              setBooksInCart={setBooksInCart}
+            />
+          </li>
+        ))}
+      </div>
+      <div className="pagination">
+        <button
+          onClick={() => {
+            page > 1 && setPage(page - 1);
+          }}
+        >
+          Previous
+        </button>
+        {page}
+        <button onClick={() => setPage(page + 1)}>Next</button>
+      </div>
     </ul>
   );
 };
