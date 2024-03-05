@@ -1,17 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
+import Context from "./Context";
 
-const Book = ({ id, title, author, booksInCart, setBooksInCart }) => {
+const Book = ({ id, title, authors, img, price }) => {
   const [isInCart, setIsInCart] = useState(false);
+  const {
+    state: { totalPrice, shoppingCart },
+    dispatch,
+  } = useContext(Context);
+  const addToCart = (title, price) => {
+    dispatch({
+      type: "book/add-to-cart",
+      payload: {
+        title,
+        price,
+      }, //or the whole book object
+    });
+  };
   return (
     <div>
       Title: {title} <br />
-      Author: {author}
+      <img src={img} alt="book image" />
+      <br />
+      Author:
+      {authors.join(", ")} <br />
+      Price: {price} <br />
       {!isInCart ? (
         <button
           onClick={() => {
             setIsInCart(true);
-            setBooksInCart(booksInCart + 1);
+            addToCart(title, price);
           }}
         >
           Add to Cart
@@ -20,7 +38,6 @@ const Book = ({ id, title, author, booksInCart, setBooksInCart }) => {
         <button
           onClick={() => {
             setIsInCart(false);
-            setBooksInCart(booksInCart - 1);
           }}
         >
           Remove from Cart

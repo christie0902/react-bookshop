@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.scss";
@@ -8,38 +8,45 @@ import MainContent from "./components/MainContent";
 import TopMenu from "./components/TopMenu";
 import books from "./data/book";
 import Book from "./components/Book";
+import BookList from "./components/BookList";
+import CurrencyContext from "./components/CurrencyContext";
+import Context from "./components/Context";
+import reducer from "./components/reducer";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [currency, setCurrency] = useState("EUR");
   const [currentPage, setCurrentPage] = useState("");
   const [user, setUser] = useState("");
-  const [booksInCart, setBooksInCart] = useState("0");
-
+  const [state, dispatch] = useReducer(reducer, {
+    page: "",
+    user: null,
+    theme: "light",
+    language: "en",
+    currency: "USD",
+    authHash: null,
+    shoppingCart: [],
+    totalPrice: 0,
+  });
+  console.log(state.shoppingCart);
   return (
-    <div className="app">
-      <Header
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        user={user}
-        setUser={setUser}
-      />
-      <MainContent currentPage={currentPage} user={user} setUser={setUser} />
-      Books in cart: {booksInCart}
-      <h1>List of Books</h1>
-      <ul style={{ textAlign: "left" }}>
-        {books.map((book) => (
-          <li key={book.id}>
-            <Book
-              title={book.title}
-              author={book.author}
-              booksInCart={booksInCart}
-              setBooksInCart={setBooksInCart}
-            />
-          </li>
-        ))}
-      </ul>
-      <Footer />
-    </div>
+    <Context.Provider value={{ state, dispatch }}>
+      {/* <CurrencyContext.Provider value={{ currency, setCurrency }}> */}
+      <div className="app">
+        <Header
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          user={user}
+          setUser={setUser}
+        />
+        <MainContent currentPage={currentPage} user={user} setUser={setUser} />
+        Books in cart: {state.shoppingCart.length}
+        <h1>List of Books</h1>
+        <BookList />
+        <Footer />
+      </div>
+      {/* </CurrencyContext.Provider> */}
+    </Context.Provider>
   );
 }
 
