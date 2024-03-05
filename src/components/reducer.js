@@ -43,6 +43,14 @@ export default function reducer(state, action) {
         shoppingCart: [...state.shoppingCart, action.payload.title],
         totalPrice: state.totalPrice + action.payload.price,
       };
+    case "book/remove-from-cart":
+      return {
+        ...state,
+        shoppingCart: state.shoppingCart.filter(
+          (title) => title !== action.payload.title
+        ),
+        totalPrice: state.totalPrice - action.payload.price,
+      };
   }
 
   // the action was not recognized, return the state unchanged

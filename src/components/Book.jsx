@@ -17,6 +17,15 @@ const Book = ({ id, title, authors, img, price }) => {
       }, //or the whole book object
     });
   };
+  const removeFromCart = (title, price) => {
+    dispatch({
+      type: "book/remove-from-cart",
+      payload: {
+        price,
+        title,
+      },
+    });
+  };
   return (
     <div>
       Title: {title} <br />
@@ -38,6 +47,7 @@ const Book = ({ id, title, authors, img, price }) => {
         <button
           onClick={() => {
             setIsInCart(false);
+            removeFromCart(title, price);
           }}
         >
           Remove from Cart

@@ -40,7 +40,12 @@ function App() {
           setUser={setUser}
         />
         <MainContent currentPage={currentPage} user={user} setUser={setUser} />
-        Books in cart: {state.shoppingCart.length}
+
+        <h2 style={{ color: "red" }}>
+          Books in cart: {state.shoppingCart.length}
+        </h2>
+        <h2 style={{ color: "blue" }}>Total price: {state.totalPrice}</h2>
+
         <h1>List of Books</h1>
         <BookList />
         <Footer />
