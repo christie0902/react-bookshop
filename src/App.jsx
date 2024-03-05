@@ -45,7 +45,9 @@ function App() {
         <h2 style={{ color: "red" }}>
           Books in cart: {state.shoppingCart.length}
         </h2>
-        <h2 style={{ color: "blue" }}>Total price: {state.totalPrice}</h2>
+        <h2 style={{ color: "blue" }}>
+          Total price: {Math.round(state.totalPrice * state.exchangeRate)}
+        </h2>
 
         <h1>List of Books</h1>
         <BookList />

@@ -45,12 +45,20 @@ const BookList = ({ booksInCart, setBooksInCart }) => {
         <button
           onClick={() => {
             page > 1 && setPage(page - 1);
+            loadData();
           }}
         >
           Previous
         </button>
         {page}
-        <button onClick={() => setPage(page + 1)}>Next</button>
+        <button
+          onClick={() => {
+            setPage(page + 1);
+            loadData();
+          }}
+        >
+          Next
+        </button>
       </div>
     </ul>
   );

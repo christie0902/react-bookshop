@@ -55,7 +55,7 @@ export default function reducer(state, action) {
     case "exchangeRate/set":
       return {
         ...state,
-        exchangeRate: action.payload,
+        exchangeRate: Math.round(action.payload),
       };
   }
 
