@@ -5,6 +5,7 @@ import Homepage from "../pages/Homepage";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
 import BookDetails from "./BookDetails";
+import SubpageLayout from "../pages/SubpageLayout";
 
 const MainContent = ({ currentPage, user, setUser }) => {
   return (
@@ -21,9 +22,12 @@ const MainContent = ({ currentPage, user, setUser }) => {
 
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/book/:id" element={<BookDetails />} />
+
+        <Route path="/" element={<SubpageLayout />}>
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/book/:id" element={<BookDetails />} />
+        </Route>
       </Routes>
     </>
   );

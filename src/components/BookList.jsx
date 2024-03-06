@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import Book from "./Book";
 import CurrencyContext from "./CurrencyContext";
 import Context from "./Context";
+import { Routes, Route } from "react-router-dom";
+import BookDetails from "./BookDetails";
 
 const BookList = ({ booksInCart, setBooksInCart }) => {
   const [bookList, setBookList] = useState([]);
@@ -28,9 +30,13 @@ const BookList = ({ booksInCart, setBooksInCart }) => {
     <ul style={{ textAlign: "left" }}>
       <h4>You can buy these book in {currency}</h4>
       <div className="book-list">
+        <Routes>
+          <Route path="/book/:id" element={<BookDetails />} />
+        </Routes>
         {bookList.map((book) => (
           <li className="book-item" key={book.id}>
             <Book
+              id={book.id}
               title={book.title}
               authors={book.authors.map((author) => author.name)}
               img={book.image}

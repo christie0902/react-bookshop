@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import { useState } from "react";
 import Context from "./Context";
+import { Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import BookDetails from "./BookDetails";
 
 const Book = ({ id, title, authors, img, price }) => {
   const [isInCart, setIsInCart] = useState(false);
@@ -34,6 +37,7 @@ const Book = ({ id, title, authors, img, price }) => {
       Author:
       {authors.join(", ")} <br />
       Price: {price * exchangeRate + currency} <br />
+      <Link to={"/book/" + id}>Details</Link>
       {!isInCart ? (
         <button
           onClick={() => {
