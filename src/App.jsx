@@ -1,4 +1,5 @@
 import { useReducer, useState } from "react";
+import { BrowserRouter } from "react-router-dom";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.scss";
@@ -31,30 +32,36 @@ function App() {
   });
   console.log(state.shoppingCart);
   return (
-    <Context.Provider value={{ state, dispatch }}>
-      {/* <CurrencyContext.Provider value={{ currency, setCurrency }}> */}
-      <div className="app">
-        <Header
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          user={user}
-          setUser={setUser}
-        />
-        <MainContent currentPage={currentPage} user={user} setUser={setUser} />
+    <BrowserRouter>
+      <Context.Provider value={{ state, dispatch }}>
+        {/* <CurrencyContext.Provider value={{ currency, setCurrency }}> */}
+        <div className="app">
+          <Header
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            user={user}
+            setUser={setUser}
+          />
+          <MainContent
+            currentPage={currentPage}
+            user={user}
+            setUser={setUser}
+          />
 
-        <h2 style={{ color: "red" }}>
-          Books in cart: {state.shoppingCart.length}
-        </h2>
-        <h2 style={{ color: "blue" }}>
-          Total price: {Math.round(state.totalPrice * state.exchangeRate)}
-        </h2>
+          <h2 style={{ color: "red" }}>
+            Books in cart: {state.shoppingCart.length}
+          </h2>
+          <h2 style={{ color: "blue" }}>
+            Total price: {Math.round(state.totalPrice * state.exchangeRate)}
+          </h2>
 
-        <h1>List of Books</h1>
-        <BookList />
-        <Footer />
-      </div>
-      {/* </CurrencyContext.Provider> */}
-    </Context.Provider>
+          <h1>List of Books</h1>
+          <BookList />
+          <Footer />
+        </div>
+        {/* </CurrencyContext.Provider> */}
+      </Context.Provider>
+    </BrowserRouter>
   );
 }
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import MenuItem from "./MenuItem";
+import { Link } from "react-router-dom";
 const TopMenu = ({ currentPage, setCurrentPage }) => {
   const [open, setOpen] = useState(false);
   const openMenu = () => setOpen(true);
@@ -8,7 +9,11 @@ const TopMenu = ({ currentPage, setCurrentPage }) => {
     <>
       {open ? (
         <div className="menu">
-          <MenuItem
+          <Link to="/">Home</Link>
+          <Link to="/about">About us</Link>
+          <Link to="/contact">Contact us</Link>
+
+          {/* <MenuItem
             href="#"
             currentPage={currentPage}
             label="home"
@@ -31,7 +36,7 @@ const TopMenu = ({ currentPage, setCurrentPage }) => {
             currentPage={currentPage}
             label="login"
             setCurrentPage={setCurrentPage}
-          />
+          /> */}
         </div>
       ) : (
         <div className="burger-menu" onClick={openMenu}>
